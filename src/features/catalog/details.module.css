@@ -1,0 +1,78 @@
+.direct { max-width: 93rem; min-height: 90svh; margin: 0 auto; padding-top: var(--header-height); padding-bottom: 5rem; }
+.dialog {
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: .95rem;
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+  width: min(80vw, 68rem);
+  max-height: min(92svh, 63rem);
+  overscroll-behavior: contain;
+  overflow: auto;
+  scrollbar-width: thin;
+  animation: dialog-fade-in 270ms ease;
+}
+.dialog::backdrop { background: #080808c8; }
+/* Keep the transform off the dialog so its fixed previews use viewport coordinates. */
+.dialogInner { position: relative; animation: dialog-content-in 270ms ease; }
+.close {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  top: 1rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: #151919d9;
+  border: 1px solid #ffffff36;
+  border-radius: 50%;
+  color: white;
+}
+.close:hover { background: var(--color-surface-raised); }
+
+.detail { background: var(--color-surface-elevated); }
+.hero { min-height: clamp(20rem, 47vw, 30rem); isolation: isolate; position: relative; display: flex; align-items: end; }
+.art, .hero::after { position: absolute; inset: 0; }
+.art { z-index: -2; }
+.art img { object-fit: cover; object-position: 57% 45%; }
+.hero::after { z-index: -1; content: ""; background: linear-gradient(0deg, var(--color-surface-elevated), #191b1c85 37%, #11131526 75%); }
+.heroCopy, .body { padding-inline: clamp(1.15rem, 5vw, 4rem); }
+.heroCopy { padding-bottom: 1.2rem; }
+.heroCopy > p { color: var(--color-text-secondary); font-weight: 610; font-size: .88rem; }
+.heroCopy > p > span { border: 1px solid #ffffff4d; margin-left: .45rem; padding: .12rem .32rem; border-radius: .25rem; }
+.heroCopy h1 { font-size: clamp(2.45rem, 5.7vw, 4.5rem); letter-spacing: -.07em; line-height: 1.02; margin-top: .45rem; }
+.actions { display: flex; gap: .65rem; margin-top: 1.12rem; }
+.body { padding-bottom: 2.5rem; }
+.facts { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 2.2rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1.8rem; }
+.synopsis { line-height: 1.66; }
+.advisory { margin-top: .65rem; color: var(--color-text-muted); line-height: 1.5; font-size: .88rem; }
+.facts dl, .facts dd { margin: 0; }
+.facts dl { display: grid; align-content: start; gap: .58rem; font-size: .88rem; }
+.facts dl > div { display: grid; grid-template-columns: minmax(5.5rem, 1fr) 1.25fr; gap: .45rem; }
+.facts dt { color: var(--color-text-muted); }
+.episodes, .related { margin-top: 1.85rem; }
+.episodesHeading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .65rem; }
+.episodesHeading select { min-height: 2.75rem; padding: .4rem .65rem; background: var(--color-surface-raised); border: 1px solid var(--color-border); border-radius: .4rem; color: var(--color-text-primary); }
+.episode { display: grid; grid-template-columns: auto minmax(5rem, 10rem) 1fr auto; gap: .9rem; align-items: center; padding: .8rem 0; border-bottom: 1px solid var(--color-border); }
+.episodeNumber { color: var(--color-text-muted); }
+.episodeArt { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border-radius: .39rem; }
+.episodeArt img { object-fit: cover; }
+.episodeArt progress { position: absolute; inset: auto 0 0; width: 100%; height: 5px; accent-color: var(--color-accent); }
+.episode h3 { font-size: 1rem; }
+.episode p { color: var(--color-text-secondary); font-size: .84rem; margin-top: .25rem; line-height: 1.4; }
+.episode .episodeRuntime { color: var(--color-text-muted); font-size: .77rem; }
+.related h2 { margin-bottom: .95rem; }
+.related > div { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@keyframes dialog-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dialog-content-in { from { transform: translateY(9px) scale(.985); } to { transform: none; } }
+
+@media (max-width: 720px) {
+  .dialog { width: 100%; height: 100%; max-width: 100%; max-height: 100%; margin: 0; border-radius: 0; border: 0; }
+  .facts { grid-template-columns: 1fr; gap: 1.1rem; }
+  .related > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .direct { padding-bottom: 6.5rem; }
+  .episode { grid-template-columns: minmax(4rem, 6.25rem) minmax(0, 1fr); column-gap: .7rem; }
+  .episodeNumber { display: none; }
+  .episode > a { grid-column: 2; justify-self: start; }
+}

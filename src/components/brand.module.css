@@ -1,0 +1,26 @@
+.brand {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: .25rem;
+}
+
+.mark {
+  display: block;
+  flex: none;
+  width: 2.125rem;
+  height: 2.125rem;
+}
+
+.wordmark {
+  display: block;
+  width: 7.5rem;
+  height: auto;
+  margin-inline-start: -.5rem;
+  margin-inline-end: -.25rem;
+}
+
+@media (max-width: 760px) {
+  .brand .mark { width: 2rem; height: 2rem; }
+  .wordmark { width: 7.15rem; }
+}
